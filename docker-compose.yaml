@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  todo-app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: ToDo-app
+    ports: 
+      - "5006:5006"
+    volumes:
+      - ./instance:/app/instance
+    restart: unless-stopped
