@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>ToDo List Flask</title>
+{% endblock %}
+
+{% block body %}
+<h1>TODO List</h1>
+
+<form action="{{ url_for('home') }}" class="input-container" method="POST">
+    <input type="text" placeholder="Enter ToDo" id="input-todo" name="content" required>
+    <button id="add-todo">Add</button>
+</form>
+
+<h2>ToDos</h2>
+<div class="todo-container">
+    {% for item in items %}
+    <div class="todo">
+        <p>{{ item.content }}</p>
+        <div class="actions">
+            <a href="{{ url_for('update_todo', id=item.id) }}" class="btn-update">Update</a>
+            <form action="{{ url_for('delete_todo', id=item.id) }}" method="POST">
+                <button class="btn-delete">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+</html>
